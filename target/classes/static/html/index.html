@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="icon" href="../images/timg.jpg" type="image/x-icon"/>
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../jquery-3.2.1.js"></script>
+
+    <script>
+
+        $(function () {
+            //阻止浏览器默认右键点击事件
+            document.oncontextmenu = function () {
+                return false;
+            }
+
+            var width = $(window).width();
+            var height = $(document).height();
+
+            $(".tioFloorDiv").css("width", width).css("height", height);
+
+            $("body").mousedown(function (e) {//右击事件
+                var xx = e.pageX;
+                var yy = e.pageY;
+                $(".coordinate").text("x:" + xx + " ,y:" + yy)
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="tioFloorDiv">
+    <span class="coordinate"></span>
+</div>
+
+</body>
+</html>
