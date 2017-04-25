@@ -10,46 +10,156 @@
     <script>
 
         $(function () {
-            //阻止浏览器默认右键点击
+            /**
+             * 阻止浏览器默认右键点击
+             */
             document.oncontextmenu = function () {
                 return false;
             };
 
-            var width = $(window).width();
-            var height = $(document).height();
+            var width = $(window).width() - 200;//页面宽度
+            var height = $(document).height() - 300;//页面高度
+            var menuX = 0;//菜单的x坐标
+            var menuY = 0;//菜单的y坐标
 
-//            $("body").css("width", 2000).css("height", 1000);
-
-            $("html").mousemove(function (e) {//鼠标移动事件
+            /**
+             * 鼠标移动事件
+             */
+            $("html").mousemove(function (e) {
                 var xx = e.pageX;
                 var yy = e.pageY;
                 $(".coordinate span").text("x:" + xx + " ,y:" + yy)
             });
 
-            $("html").mousedown(function (e) {//鼠标右击事件
+            /**
+             * 鼠标点击事件
+             */
+            $("html").mousedown(function (e) {
+                var xx = e.pageX;
+                var yy = e.pageY;
 
-                if (3 == e.which) {
-                    var xx = e.pageX;
-                    var yy = e.pageY;
-                    $(".menu").css("margin-left", xx).css("margin-top", yy).css("display", "inherit");
+                if (1 == e.which) {//鼠标左键
+                    if (xx < menuX || xx > menuX + 205 || yy < menuY || yy > menuY + 255)
+                        $(".menu").css("display", "none");
+                }
+                if (3 == e.which) {//鼠标右键
+                    if (xx > width) {//超出屏幕宽度
+                        xx = xx - 130;
+                    }
+                    if (yy > height) {//超出屏幕高度
+                        yy = yy - 250;
+                    }
+                    menuX = xx;
+                    menuY = yy;
+                    $(".menu").css("left", xx + "px").css("top", yy + "px").css("position", "absolute").css("display", "inherit");
                 }
             });
+
+            /**
+             * 鼠标悬浮或离开菜单事件
+             */
+            $(".menu ul li").hover(function () {
+                $(this).css("background", "#cbcbcb").css("cursor", "pointer").siblings().css("background", "#f0f0f0");
+            }, function () {
+                $(".menu ul li").css("background", "#f0f0f0");
+            });
+
+            /**
+             * 单击菜单事件
+             */
+            $(".menu ul li").click(function () {
+                var effect = $(this).attr("effect");
+
+                switch (effect) {
+                    case "see"://查看
+                        location.reload();
+
+                    case "sortMode"://排序方式
+                        location.reload();
+
+                    case "flush"://刷新
+                        location.reload();
+
+                    case "paste"://粘贴
+                        location.reload();
+
+                    case "pasteShortcut"://粘贴快捷方式
+                        location.reload();
+
+                    case "undoDelete"://撤销 删除
+                        location.reload();
+
+                    case "newlyBuild"://新建
+                        location.reload();
+
+                    case "displaySetting"://显示设置
+                        location.reload();
+
+                    case "individualization"://个性化
+                        location.reload();
+                }
+
+            });
         });
+
     </script>
 </head>
 <body>
 
-<div class="tipFloorDiv">
-    <div class="coordinate">
-        <span></span>
+<div class="deskLogo">
+    <div class="desktopAppLogo">
+        <img src="../images/123.jpg">
+        <span>应用app</span>
+    </div>
+    <div class="desktopAppLogo">
+        <img src="../images/123.jpg">
+        <span>应用app</span>
+    </div>
+    <div class="desktopAppLogo">
+        <img src="../images/123.jpg">
+        <span>应用app</span>
+    </div>
+    <div class="desktopAppLogo">
+        <img src="../images/123.jpg">
+        <span>应用app</span>
+    </div>
+    <div class="desktopAppLogo">
+        <img src="../images/123.jpg">
+        <span>应用app</span>
+    </div>
+    <div class="desktopAppLogo">
+        <img src="../images/123.jpg">
+        <span>应用app</span>
+    </div>
+    <div class="desktopAppLogo">
+        <img src="../images/123.jpg">
+        <span>应用app</span>
+    </div>
+    <div class="desktopAppLogo">
+        <img src="../images/123.jpg">
+        <span>应用app</span>
+    </div>
+    <div class="desktopAppLogo">
+        <img src="../images/123.jpg">
+        <span>应用app</span>
+    </div>
+    <div class="desktopAppLogo">
+        <img src="../images/123.jpg">
+        <span>应用app</span>
     </div>
 </div>
 
 <div class="menu" style="display: none;">
     <ul>
-        <li>刷新</li>
-        <li>复制</li>
-        <li>粘贴</li>
+        <li effect="see">查看(V)</li>
+        <li effect="sortMode">排序方式(O)</li>
+        <li effect="flush">刷新(E)</li>
+        <li effect="paste">粘贴(P)</li>
+        <li effect="pasteShortcut">粘贴快捷方式(S)</li>
+        <li effect="undoDelete">撤销 删除(U)</li>
+        <li effect="newlyBuild">新建(W)</li>
+        <li effect="displaySetting">显示设置(D)</li>
+        <li effect="individualization">个性化(R)</li>
     </ul>
 </div>
 

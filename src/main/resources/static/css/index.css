@@ -13,19 +13,29 @@ body {
     height: 100%;
 }
 
-.coordinate {
-    float: right;
-    position: fixed;
-    width: 110px;
-    height: 20px;
-    background: #eee;
-    bottom: 40px;
-    right: 20px;
-    background-color: #DCFCE9;
-    border: 8px double #06F867;
+.deskLogo{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    word-wrap: break-word;
+}
+
+.desktopAppLogo {
+    width: 65px;
+    height: 90px;
+    /*border-radius: 30px;*/
+    margin: 20px;
+}
+
+.desktopAppLogo img {
+    width: 100%;
+    height: 72%;
+}
+
+.desktopAppLogo span {
+    display: block;
     text-align: center;
-    padding: 10px;
-    margin: 10px;
+    font-size: 16px;
 }
 
 .menu {
@@ -35,12 +45,14 @@ body {
 
 ul {
     list-style-type: none;
-    letter-spacing: 20px;
-    border: 1px red solid;
-    width: 120px;
-    height: 240px;
+    border: 1px #c1c1c1 solid;
+    background-color: #f0f0f0;
+    width: 205px;
+    height: 255px;
 }
 
 ul li {
-
+    line-height: 28px;
+    font-size: 17px;
+    padding-left: 18px;
 }
